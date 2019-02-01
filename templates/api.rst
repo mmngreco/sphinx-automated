@@ -1,6 +1,6 @@
 .. This file has been created by automatically.
 
-.. currentmodule:: {PY_SRC}
+.. currentmodule:: {PARENT_MOD_NAME}
 
 =============
 API reference
@@ -9,4 +9,4 @@ API reference
 .. autosummary::
    :toctree:
 
-{PY_MODULES}
+   {PY_MODULES}
