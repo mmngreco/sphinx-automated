@@ -13,7 +13,6 @@ def main(prj_dir_str):
     PY_MODULES = find_abs_modules(MOD_DIR.name, str(MOD_DIR))
     import pdb; pdb.set_trace()
     print("done")
-    
 
 
 def path_import(name, path):
@@ -22,6 +21,7 @@ def path_import(name, path):
     foo = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(foo)
     return foo
+
 
 def find_abs_modules(MOD_NAME, MOD_DIR):
     import importlib
@@ -41,29 +41,8 @@ def find_abs_modules(MOD_NAME, MOD_DIR):
 
     for spec in spec_list:
         del sys.modules[spec.name]
-    
+
     return path_list
-
-def _find_abs_modules(module):
-    import importlib
-    import pkgutil
-    import modules
-    path_list = []
-    spec_list = []
-
-    for importer, modname, ispkg in pkgutil.walk_packages(module.__path__):
-        import_path = f"{module.__name__}.{modname}"
-
-        if ispkg:
-            spec = pkgutil._get_spec(importer, modname)
-            importlib._bootstrap._load(spec)
-            spec_list.append(spec)
-        else:
-            path_list.append(import_path)
-
-    for spec in spec_list:
-        del sys.modules[spec.name]
-        return path_list
 
 
 if __name__ == "__main__":
