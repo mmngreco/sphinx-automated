@@ -1,15 +1,21 @@
 import sphinx_automated as sa
-prj_dir = "path"
-prj_name = "pkg_name"
-author = "autor"
+
+# ============================================================================
+# EDIT THIS
+PRJ_DIR = "path"
+PRJ_NAME = "pkg_name"
+AUTHOR = "autor"
+# ============================================================================
+
 try:
-    sa.remove_doc_structure.main(prj_dir)
+    sa.remove_doc_structure.main(PRJ_DIR)
 except:
     pass
-sa.make_doc_structure.main(prj_dir, prj_name, author)
-sa.customize_conf.main(prj_dir)
-sa.generate_rst.main(prj_dir)
-sa.process_templates.main(prj_dir)
-sa.update_index.main(prj_dir)
-sa.generate_html.main(prj_dir)
+
+sa.make_doc_structure.main(PRJ_DIR, PRJ_NAME, AUTHOR)
+sa.customize_conf.main(PRJ_DIR)
+sa.generate_rst.main(PRJ_DIR)
+sa.process_templates.main(PRJ_DIR)
+sa.update_index.main(PRJ_DIR)
+sa.generate_html.main(PRJ_DIR)
 
