@@ -6,5 +6,3 @@ from . import process_templates
 from . import update_index
 from . import utils
 from . import remove_doc_structure
-
-

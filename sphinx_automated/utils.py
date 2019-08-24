@@ -5,27 +5,15 @@ from subprocess import Popen, PIPE, STDOUT, CalledProcessError
 import sys
 
 
-# def execute(command):
-#     process = Popen(command, shell=True, stdout=PIPE, stderr=STDOUT)
-
-#     while True:
-#         nextline = process.stdout.readline()
-#         if nextline == '' and process.poll() is not None:
-#             break
-#         sys.stdout.write(nextline.decode("utf-8"))
-#         sys.stdout.flush()
-
-#     output = process.communicate()[0]
-#     exitCode = process.returncode
-
-#     if (exitCode == 0):
-#         return output
-#     else:
-#         raise ProcessException(command, exitCode, output)
-
 def execute(cmd):
     def _exec(cmd):
-        popen = Popen(cmd, stdout=PIPE, stderr=PIPE, universal_newlines=True, shell=True)
+        popen = Popen(
+                args=cmd,
+                stdout=PIPE,
+                stderr=PIPE,
+                universal_newlines=True,
+                shell=True
+            )
 
         for stdout_line in iter(popen.stdout.readline, ""):
             yield stdout_line
@@ -65,7 +53,6 @@ def find_abs_modules(MOD_NAME, MOD_DIR):
     spec_list = []
 
     for importer, modname, ispkg in pkgutil.walk_packages([MOD_DIR]):
-        # import_path = "{MOD_NAME}.{modname}".format(MOD_NAME=MOD_NAME, modname=modname)
         import_path = "{modname}".format(MOD_NAME=MOD_NAME, modname=modname)
 
         if ispkg:

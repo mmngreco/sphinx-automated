@@ -1,20 +1,17 @@
-from pathlib import Path
 import sys
+from pathlib import Path
 
+TMPL_DIR = Path(__file__).absolute().resolve().parent / "templates"
 
 def main(PRJ_DIR):
     if not isinstance(PRJ_DIR, Path):
         PRJ_DIR = Path(PRJ_DIR)
     CONFPY_DIR = PRJ_DIR / "docs" / "source" / "conf.py"
 
-    # __import__('pdb').set_trace()
-
-    FILE_TO_APPEND = Path(__file__).absolute().resolve().parents[1] / "templates" / "append_conf.py"
+    FILE_TO_APPEND = TMPL_DIR / "append_conf.py"
 
     with FILE_TO_APPEND.open("r") as f:
         CODE_TO_APPEND = f.readlines()
-
-    # __import__('pdb').set_trace()
 
     with CONFPY_DIR.open("a") as f:
         f.writelines(CODE_TO_APPEND)

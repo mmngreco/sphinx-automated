@@ -1,0 +1,4 @@
+include sphinx_automated/*
+include sphinx_automated/tests/*
+include sphinx_automated/templates/*
+include sphinx_automated/examples/*

@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 from .utils import export_file, get_url, find_abs_modules
+TMPL_DIR = Path(__file__).absolute().resolve().parents[0] / "templates"
 
 def main(PRJ_DIR):
     if not isinstance(PRJ_DIR, Path):
@@ -8,7 +9,6 @@ def main(PRJ_DIR):
     PRJ_DIR = PRJ_DIR.absolute().resolve()
     MOD_DIR = PRJ_DIR / PRJ_DIR.name
     SRC_DIR = PRJ_DIR / "docs" / "source"
-    TMPL_DIR = Path(__file__).absolute().resolve().parents[1] / "templates"
     TAB = "   "
     JOIN_STR = "\n%s" % TAB
 
