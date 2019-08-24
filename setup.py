@@ -7,4 +7,5 @@ setup(
         "sphinx",
         "sphinx_rtd_theme",
         ],
+    include_package_data=True,
 )

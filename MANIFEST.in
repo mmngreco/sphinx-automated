@@ -1,4 +1,4 @@
 include sphinx_automated/*
-include tests/*
-include templates/*
-include examples/*
+include sphinx_automated/tests/*
+include sphinx_automated/templates/*
+include sphinx_automated/examples/*
