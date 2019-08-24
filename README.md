@@ -7,7 +7,7 @@ El correcto uso de este proyecto está supeditado a tener un proyecto con la
 estructura estándar de python.
 
 ```
-pkg_a
+pkg_a (PRJ_DIR)
 ├── pkg_a
 │   ├── awesome.py
 │   └── __init__.py
@@ -29,17 +29,14 @@ pip install git+git@github.com:mmngreco/sphinx-automated.git
 
 # Uso
 
-Ver carpeta `examples`, alli se encuentra el fichero `programmatically.py`
-con un ejemplo de uso.
-
-Concretamente hay que editar `programmatically.py`:
+Concretamente hay que editar `run.py`:
 
 ```python
 import sphinx_automated as sa
 
 # ============================================================================
 # EDIT THIS
-PRJ_DIR = "path"
+PRJ_DIR = "/root/git/sphinx_automated"
 PRJ_NAME = "pkg_name"
 AUTHOR = "autor"
 # ============================================================================
@@ -61,6 +58,22 @@ sa.generate_html.main(PRJ_DIR)
 Una vez editado solo hay que lanzar la siguiente linea:
 
 ```bash
-python examples/programmatically.py
+python -m sphinx_automated.run
 ```
 
+Una vez haya termiando tendremos una nueva carpeta en `PRJ_DIR`:
+
+
+```
+pkg_a (PRJ_DIR)
+├── pkg_a
+│   ├── awesome.py
+│   └── __init__.py
+├── docs
+│   ├── build
+│   │  └── html (index.html)
+│   └── source
+├── README.md
+└── setup.py
+
+```
