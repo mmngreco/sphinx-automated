@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from . import *
 
 # ========================================================================
@@ -8,6 +10,13 @@ AUTHOR = "autor"
 # =========================================================================
 
 def main():
+
+    PRJ_DIR = Path(PRJ_DIR)
+
+    assert PRJ_DIR.exists(), "The PRJ_DIR is not a valid path."
+
+    PRJ_DIR = str(PRJ_DIR)
+
     try:
         remove_doc_structure.main(PRJ_DIR)
     except:
