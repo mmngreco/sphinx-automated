@@ -1,0 +1,2 @@
+_version.py export-subst
+sphinx_automated/_version.py export-subst
