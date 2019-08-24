@@ -19,7 +19,7 @@ def main(PRJ_DIR, SRC_NAME):
 
     # import pdb; pdb.set_trace()
 
-    HTML_CMD = "sphinx-build -M html {SOURCE_DIR} {BUILD_DIR}"
+    HTML_CMD = "sphinx-build -M html \"{SOURCE_DIR}\" \"{BUILD_DIR}\""
     CMD = HTML_CMD.format(**fmt)
     execute(CMD)
     webbrowser.open('file://%s' % (fmt['BUILD_DIR']/"html"/"index.html"))

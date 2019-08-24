@@ -13,7 +13,7 @@ def main(PRJ_DIR, SRC_NAME):
     PKG_DIR = PROJECT_DIR / SRC_NAME
     SOURCE_DIR = PROJECT_DIR / "docs" / "source"
 
-    RST_CMD = "sphinx-apidoc -M -T -f -e -o '{SOURCE_DIR}' '{PKG_DIR}'"
+    RST_CMD = "sphinx-apidoc -M -T -f -e -o \"{SOURCE_DIR}\" \"{PKG_DIR}\""
 
     fmt = dict(
         PKG_DIR=PKG_DIR,
