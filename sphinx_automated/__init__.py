@@ -6,3 +6,7 @@ from . import process_templates
 from . import update_index
 from . import utils
 from . import remove_doc_structure
+
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions
