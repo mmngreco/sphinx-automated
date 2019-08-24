@@ -13,17 +13,17 @@ EXTENSION_LST = [
 
 
 CMD_LST = [
-    "sphinx-quickstart",
-    "--quiet",
-    "--sep",
-    "--project='{PROJECT_NAME}'",
-    "--author='{AUTHOR}'",
-    "--suffix='{SUFFIX}'",
-    "--extensions={EXTENSIONS}",
-    "--makefile",
-    "--batchfile",
-    "{DOC_DIR}"
-]
+        "sphinx-quickstart",
+        "--quiet",
+        "--sep",
+        "--project='{PROJECT_NAME}'",
+        "--author='{AUTHOR}'",
+        "--suffix={SUFFIX}",
+        "--extensions={EXTENSIONS}",
+        "--makefile",
+        "--batchfile",
+        "\"{DOC_DIR}\""
+    ]
 
 EXTENSIONS = ",".join(EXTENSION_LST)
 

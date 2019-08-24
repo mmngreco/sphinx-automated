@@ -9,7 +9,9 @@ def main(PRJ_DIR):
     PRJ_DIR = PRJ_DIR.absolute().resolve()
     SRC_DIR = PRJ_DIR / "docs" / "source"
     index_file = SRC_DIR / "index.rst"
-    INCLUDE = ["install.rst", "quickstart.rst", "api.rst"]
+
+    INCLUDE = ["install.rst", "quickstart.rst", "api.rst"]  # files to include in the index file.
+
     INSERT_AT = 12
     TAB = "   "
     RST_LST = []

@@ -3,12 +3,12 @@ import webbrowser
 import sys
 from .utils import execute
 
-def main(PRJ_DIR):
+def main(PRJ_DIR, SRC_NAME):
     if not isinstance(PRJ_DIR, Path):
         PRJ_DIR = Path(PRJ_DIR)
     PROJECT_DIR = PRJ_DIR.absolute().resolve()
 
-    PKG_DIR = PROJECT_DIR / PROJECT_DIR.name
+    PKG_DIR = PROJECT_DIR / SRC_NAME
     SOURCE_DIR = PROJECT_DIR / "docs" / "source"
 
     fmt = dict(
@@ -19,7 +19,7 @@ def main(PRJ_DIR):
 
     # import pdb; pdb.set_trace()
 
-    HTML_CMD = "sphinx-build -M html {SOURCE_DIR} {BUILD_DIR}"
+    HTML_CMD = "sphinx-build -M html \"{SOURCE_DIR}\" \"{BUILD_DIR}\""
     CMD = HTML_CMD.format(**fmt)
     execute(CMD)
     webbrowser.open('file://%s' % (fmt['BUILD_DIR']/"html"/"index.html"))
@@ -29,4 +29,5 @@ def main(PRJ_DIR):
 
 if __name__ == "__main__":
     PROJECT_DIR = sys.argv[1]
-    main(PROJECT_DIR)
+    SRC_NAME = sys.argv[2]
+    main(PROJECT_DIR, SRC_NAME)

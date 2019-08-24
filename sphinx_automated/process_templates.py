@@ -1,13 +1,14 @@
 import sys
 from pathlib import Path
 from .utils import export_file, get_url, find_abs_modules
+
 TMPL_DIR = Path(__file__).absolute().resolve().parents[0] / "templates"
 
-def main(PRJ_DIR):
+def main(PRJ_DIR, SRC_NAME):
     if not isinstance(PRJ_DIR, Path):
         PRJ_DIR = Path(PRJ_DIR)
     PRJ_DIR = PRJ_DIR.absolute().resolve()
-    MOD_DIR = PRJ_DIR / PRJ_DIR.name
+    MOD_DIR = PRJ_DIR / SRC_NAME
     SRC_DIR = PRJ_DIR / "docs" / "source"
     TAB = "   "
     JOIN_STR = "\n%s" % TAB
@@ -28,7 +29,6 @@ def main(PRJ_DIR):
         URL=get_url(PRJ_DIR)
     )
     export_file(TMPL_DIR, SRC_DIR, "install.rst", install_fmt)
-
     export_file(TMPL_DIR, SRC_DIR, "quickstart.rst")
 
 
@@ -37,4 +37,5 @@ def main(PRJ_DIR):
 if __name__ == "__main__":
     args = sys.argv
     prj_dir_str = args[1]
-    main(prj_dir_str)
+    src_name_str = args[2]
+    main(prj_dir_str, src_name_str)
