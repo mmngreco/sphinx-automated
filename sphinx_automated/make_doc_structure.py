@@ -18,7 +18,7 @@ CMD_LST = [
         "--sep",
         "--project='{PROJECT_NAME}'",
         "--author='{AUTHOR}'",
-        "--suffix='{SUFFIX}'",
+        "--suffix={SUFFIX}",
         "--extensions={EXTENSIONS}",
         "--makefile",
         "--batchfile",
