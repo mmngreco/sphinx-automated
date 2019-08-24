@@ -22,7 +22,7 @@ CMD_LST = [
     "--extensions={EXTENSIONS}",
     "--makefile",
     "--batchfile",
-    "{DOC_DIR}"
+    "'{DOC_DIR}'"
 ]
 
 EXTENSIONS = ",".join(EXTENSION_LST)
