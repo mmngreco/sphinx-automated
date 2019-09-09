@@ -31,9 +31,9 @@ the necessary files are stored.
     
 1. Direct install with pip from Github:
 
-```bash
-pip install git+git@github.com:mmngreco/sphinx-automated.git
-```
+    ```bash
+    pip install git+git@github.com:mmngreco/sphinx-automated.git
+    ```
 
 # Quickstart
 
