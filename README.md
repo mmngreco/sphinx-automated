@@ -1,4 +1,4 @@
-Collection of Python scripts to quickly put up the `Sphinx` documentation skeleton. 
+Useful collection of Python scripts to quickly put up the `Sphinx` documentation skeleton. 
 Three basic inputs are required:
 1. Project path
 1. Visible name of the project
@@ -24,10 +24,7 @@ the necessary files are stored.
 
 # Installation
 
-1. Install `sphinx` in your environment:
-    ```bash
-    pip install Sphinx
-    ```
+The installation will collect the `Sphinx` dependencies.
     
 1. Direct install with pip from Github:
 
