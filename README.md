@@ -1,10 +1,12 @@
-Este proyecto no es mas que un conjunto de scripts python que ayudan a generar
-una primera versión de la documentación, partiendo de solo tres datos: ruta del
-proyecto, nombre visible del proyecto y nombre del autor. Siempre es posible
-cambiar cualquier dato en el futuro.
+Collection of Python scripts to quickly put up the `Sphinx` documentation skeleton. 
+Three basic inputs are required:
+1. Project path
+1. Visible name of the project
+1. Author name
 
-El correcto uso de este proyecto está supeditado a tener un proyecto con la
-estructura estándar de python.
+It is always possible to change any of the previous in the future. 
+
+The project folder must have the following Python standard structure:  
 
 ```
 pkg_a
@@ -13,23 +15,29 @@ pkg_a
 │   └── __init__.py
 ├── README.md
 └── setup.py
-
 ```
 
-Lo que hace `sphinx-automated` es lanzar el `sphinx-quickstart` con los
-argumentos, modificar el `conf.py` y el modificar `index.rst` y  se añade el
-fichero `api.rst` que es la API reference. Para ver mas detalles sobre esto ver
-la carpeta `templates` que contiene los ficheros necesarios para esta tarea.
+`sphinx-automated` will launch `sphinx-quickstart` with the user arguments,
+modify accordingly the `conf.py` and `index.rst` files. The file `api.rst` is 
+created too. To get a more detailed description, see the folder `templates`, where
+the necessary files are stored. 
 
-# Instalación
+# Installation
+
+1. Install `sphinx` in your environment:
+    ```bash
+    pip install Sphinx
+    ```
+    
+1. Direct install with pip from Github:
 
 ```bash
 pip install git+git@github.com:mmngreco/sphinx-automated.git
 ```
 
-# Uso
+# Quickstart
 
-1. Concretamente hay que editar `run.py`:
+1. Edit the `run.py` script:
 
     ```python
     from pathlib import Path
@@ -41,7 +49,7 @@ pip install git+git@github.com:mmngreco/sphinx-automated.git
     PRJ_DIR = "repos/sphinx-automated"
     SRC_NAME = "sphinx_automated"
     PRJ_NAME = "pkg_name"
-    AUTHOR = "autor"
+    AUTHOR = "author"
     # =========================================================================
 
 
@@ -70,14 +78,13 @@ pip install git+git@github.com:mmngreco/sphinx-automated.git
 
     ```
 
-1. Una vez editado solo hay que lanzar la siguiente linea:
+1. Launch the following line in the terminal:
 
     ```bash
     python -m sphinx_automated.run
     ```
-
-Una vez haya termiando tendremos una nueva carpeta en `PRJ_DIR`:
-
+    
+Once the process is over, a new folder will have appeared in `PRJ_DIR`:
 
 ```
 pkg_a  (PRJ_DIR)
