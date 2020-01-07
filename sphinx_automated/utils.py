@@ -1,8 +1,30 @@
-from pathlib import Path
-from shutil import rmtree
-import webbrowser
-from subprocess import Popen, PIPE, STDOUT, CalledProcessError
 import sys
+import webbrowser
+
+from shutil import rmtree
+from pathlib import Path
+from subprocess import CalledProcessError, PIPE, Popen, STDOUT
+from configparser import ConfigParser
+
+
+def write_config(path):
+    config = ConfigParser()
+    config["DEFAULT"] = dict(
+            prj_dir="yours",
+            src_name="yours",
+            prj_name="yours",
+            author="yours",
+            )
+    path = Path(str(path)).expanduser().absolute()
+    with open(path, "w") as configfile:
+        config.write(configfile)
+
+
+def read_config(path):
+    path = Path(str(path)).expanduser().absolute()
+    config = ConfigParser()
+    config.read(str(path))
+    return config
 
 
 def execute(cmd):

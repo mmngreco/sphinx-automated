@@ -2,16 +2,8 @@ from pathlib import Path
 
 from . import *
 
-# ========================================================================
-# EDIT THIS
-PRJ_DIR = "/Users/mmngreco/Documents/github/mmngreco/sphinx-automated"
-SRC_NAME = "sphinx_automated"
-PRJ_NAME = "pkg_name"
-AUTHOR = "autor"
-# =========================================================================
 
-
-def main(PRJ_DIR=PRJ_DIR, SRC_NAME=SRC_NAME, PRJ_NAME=PRJ_NAME, AUTHOR=AUTHOR):
+def main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR):
     PRJ_DIR = Path(PRJ_DIR)
     SRC_DIR = Path(PRJ_DIR) / SRC_NAME
     assert PRJ_DIR.exists(), f"The PRJ_DIR={PRJ_DIR} is not a valid path."
@@ -32,4 +24,29 @@ def main(PRJ_DIR=PRJ_DIR, SRC_NAME=SRC_NAME, PRJ_NAME=PRJ_NAME, AUTHOR=AUTHOR):
     generate_html.main(PRJ_DIR, SRC_NAME)
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--config-file", help="Path to config.ini file.",
+                        default="~/.sphinx_automated.conf")
+
+    parser.add_argument("--prj-dir")
+    parser.add_argument("--src-name")
+    parser.add_argument("--prj-name")
+    parser.add_argument("--author")
+
+    args = parser.parse_args()
+
+    try:
+        config = utils.read_config(args.config_file)
+        PRJ_DIR = config["DEFAULT"]["prj_dir"]
+        SRC_NAME = config["DEFAULT"]["src_name"]
+        PRJ_NAME = config["DEFAULT"]["prj_name"]
+        AUTHOR = config["DEFAULT"]["author"]
+    except KeyError:
+        PRJ_DIR = args.prj_dir
+        SRC_NAME = args.src_name
+        PRJ_NAME = args.prj_name
+        AUTHOR = args.author
+    __import__('pdb').set_trace()
+    main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR)

@@ -1,6 +1,8 @@
 import versioneer
 
 from setuptools import find_packages, setup
+from sphinx_automated import utils
+from pathlib import Path
 
 
 setup(
@@ -14,3 +16,5 @@ setup(
         include_package_data=True,
         cmdclass=versioneer.get_cmdclass(),
     )
+
+utils.write_config(Path("~/.sphinx_automated.conf"))
