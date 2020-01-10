@@ -27,15 +27,18 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-f", "--config-file", help="Path to config.ini file.",
-                        default="~/.sphinx_automated.conf")
 
+    parser.add_argument("-f", "--config-file", help="Path to config.ini file.", default="~/.sphinx_automated.conf")
     parser.add_argument("--prj-dir")
     parser.add_argument("--src-name")
     parser.add_argument("--prj-name")
     parser.add_argument("--author")
+    parser.add_argument("--create-config-file", help="Create an example config file in the path passed.")
 
     args = parser.parse_args()
+
+    if args.create_config_file is not None:
+        utils.write_config(args.create_config_file)
 
     try:
         config = utils.read_config(args.config_file)
@@ -48,5 +51,5 @@ if __name__ == "__main__":
         SRC_NAME = args.src_name
         PRJ_NAME = args.prj_name
         AUTHOR = args.author
-    __import__('pdb').set_trace()
+
     main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR)

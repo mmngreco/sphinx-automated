@@ -86,6 +86,7 @@ def find_abs_modules(MOD_NAME, MOD_DIR):
                 # avoid private modules
                 continue
             path_list.append(import_path)
+
     for spec in spec_list:
         del sys.modules[spec.name]
 

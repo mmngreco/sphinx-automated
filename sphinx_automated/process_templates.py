@@ -14,8 +14,8 @@ def main(PRJ_DIR, SRC_NAME):
     JOIN_STR = "\n%s" % TAB
 
     sys.path.insert(0, MOD_DIR)
+
     PY_MODULES = find_abs_modules(MOD_DIR.name, str(MOD_DIR))
-    # import pdb; pdb.set_trace()
 
     # templates
     api_fmt = dict(
