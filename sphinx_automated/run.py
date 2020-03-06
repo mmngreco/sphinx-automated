@@ -3,18 +3,20 @@ from pathlib import Path
 from . import *
 
 
-def main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR):
+def main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR, clean):
     PRJ_DIR = Path(PRJ_DIR)
     SRC_DIR = Path(PRJ_DIR) / SRC_NAME
+
     assert PRJ_DIR.exists(), f"The PRJ_DIR={PRJ_DIR} is not a valid path."
     assert PRJ_DIR.exists(), f"The SRC_DIR={SRC_DIR} is not a valid path."
 
     PRJ_DIR = str(PRJ_DIR)
 
-    try:
-        remove_doc_structure.main(PRJ_DIR)
-    except:
-        pass
+    if clean:
+        try:
+            remove_doc_structure.main(PRJ_DIR)
+        except:
+            pass
 
     make_doc_structure.main(PRJ_DIR, PRJ_NAME, AUTHOR)
     customize_conf.main(PRJ_DIR)
@@ -28,12 +30,14 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-f", "--config-file", help="Path to config.ini file.", default="~/.sphinx_automated.conf")
+    parser.add_argument("-c", "--config-file", help="Path to config.ini file.", default="~/.sphinx_automated.conf")
     parser.add_argument("--prj-dir")
     parser.add_argument("--src-name")
     parser.add_argument("--prj-name")
     parser.add_argument("--author")
     parser.add_argument("--create-config-file", help="Create an example config file in the path passed.")
+    parser.add_argument("--clean", help="Remove existing content and create it again from scratch.",
+            default=False)
 
     args = parser.parse_args()
 
@@ -43,7 +47,7 @@ if __name__ == "__main__":
     try:
         config = utils.read_config(args.config_file)
         PRJ_DIR = config["DEFAULT"]["prj_dir"]
-        SRC_NAME = config["DEFAULT"]["src_name"]
+        SRC_NAME = config["DEFAULT"]["src_dir"]
         PRJ_NAME = config["DEFAULT"]["prj_name"]
         AUTHOR = config["DEFAULT"]["author"]
     except KeyError:
@@ -51,5 +55,5 @@ if __name__ == "__main__":
         SRC_NAME = args.src_name
         PRJ_NAME = args.prj_name
         AUTHOR = args.author
-
-    main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR)
+    clean = args.clean
+    main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR, clean)
