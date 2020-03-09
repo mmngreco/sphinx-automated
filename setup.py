@@ -1,6 +1,8 @@
 import versioneer
 
 from setuptools import find_packages, setup
+from sphinx_automated import utils
+from pathlib import Path
 
 
 setup(

@@ -1,8 +1,30 @@
-from pathlib import Path
-from shutil import rmtree
-import webbrowser
-from subprocess import Popen, PIPE, STDOUT, CalledProcessError
 import sys
+import webbrowser
+
+from shutil import rmtree
+from pathlib import Path
+from subprocess import CalledProcessError, PIPE, Popen, STDOUT
+from configparser import ConfigParser
+
+
+def write_config(path):
+    config = ConfigParser()
+    config["DEFAULT"] = dict(
+            prj_dir="/path/to/your/project",
+            src_name="src/project",
+            prj_name="project",
+            author="you",
+            )
+    path = Path(str(path)).expanduser().absolute()
+    with open(path, "w") as configfile:
+        config.write(configfile)
+
+
+def read_config(path):
+    path = Path(str(path)).expanduser().absolute()
+    config = ConfigParser()
+    config.read(str(path))
+    return config
 
 
 def execute(cmd):
@@ -43,7 +65,8 @@ def get_url(dir):
     CMD = "git config --get remote.origin.url"
     out = Popen(CMD, shell=True, cwd=dir, stderr=PIPE, stdout=PIPE)
     # execute(CMD)
-    return out.stdout.read().decode("utf-8").strip()
+    out_str = out.stdout.read().decode("utf-8").strip()
+    return out_str.replace(":","/").replace("git@","ssh://git@")
 
 
 def find_abs_modules(MOD_NAME, MOD_DIR):
@@ -64,6 +87,7 @@ def find_abs_modules(MOD_NAME, MOD_DIR):
                 # avoid private modules
                 continue
             path_list.append(import_path)
+
     for spec in spec_list:
         del sys.modules[spec.name]
 
