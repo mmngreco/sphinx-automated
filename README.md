@@ -38,7 +38,7 @@ The installation will collect the `Sphinx` dependencies.
 
 1. Create a `project.ini` followin this templete:
     ```
-    [project]
+    [DEFAULT]
     PRJ_DIR=/Users/mmngreco/Documents/github/mmngreco/sphinx-automated
     SRC_DIR=sphinx_automated
     PRJ_NAME=pkg_name
