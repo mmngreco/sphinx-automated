@@ -39,24 +39,19 @@ The installation will collect the `Sphinx` dependencies.
 1. Create a `project.ini` followin this templete:
     ```
     [project]
-    PRJ_DIR="/Users/mmngreco/Documents/github/mmngreco/sphinx-automated"
-    SRC_NAME="sphinx_automated"
-    PRJ_NAME="pkg_name"
-    AUTHOR="autor"
+    PRJ_DIR=/Users/mmngreco/Documents/github/mmngreco/sphinx-automated
+    SRC_DIR=sphinx_automated
+    PRJ_NAME=pkg_name
+    AUTHOR=autor
     ```
-1. Run `main.py -f project.ini`.
+1. Run `python -m sphinx_automated.run -c project.ini`.
 
-1. Launch the following line in the terminal:
-
-    ```bash
-    python -m sphinx_automated.run
-    ```
 
 Once the process is over, a new folder will have appeared in `PRJ_DIR`:
 
 ```
 pkg_a  (PRJ_DIR)
-├── pkg_a  (SRC_NAME)
+├── pkg_a  (SRC_DIR)
 │   ├── awesome.py
 │   └── __init__.py
 ├── docs  (New folder!)
