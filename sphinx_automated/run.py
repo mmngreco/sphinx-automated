@@ -36,7 +36,7 @@ def read_config_file(path=None):
     return config
 
 
-def main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR):
+def main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR, clean):
     PRJ_DIR = Path(PRJ_DIR)
     SRC_DIR = Path(PRJ_DIR) / SRC_NAME
 
@@ -89,15 +89,14 @@ if __name__ == "__main__":
     else:
         try:
             config = utils.read_config(args.config_file)
-            PRJ_DIR = config["DEFAULT"]["prj_dir"]
-            SRC_NAME = config["DEFAULT"]["src_dir"]
-            PRJ_NAME = config["DEFAULT"]["prj_name"]
-            AUTHOR = config["DEFAULT"]["author"]
+            PRJ_DIR = config["DEFAULT"]["PRJ_DIR"]
+            SRC_NAME = config["DEFAULT"]["SRC_DIR"]
+            PRJ_NAME = config["DEFAULT"]["PRJ_NAME"]
+            AUTHOR = config["DEFAULT"]["AUTHOR"]
         except KeyError:
             PRJ_DIR = args.prj_dir
             SRC_NAME = args.src_name
             PRJ_NAME = args.prj_name
             AUTHOR = args.author
-
         clean = args.clean
         main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR, clean)

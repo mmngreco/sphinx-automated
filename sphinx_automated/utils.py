@@ -10,10 +10,10 @@ from configparser import ConfigParser
 def write_config(path):
     config = ConfigParser()
     config["DEFAULT"] = dict(
-            prj_dir="/path/to/your/project",
-            src_name="src/project",
-            prj_name="project",
-            author="you",
+            PRJ_DIR="/path/to/your/project",
+            SRC_DIR="src/project",
+            PRJ_NAME="project",
+            AUTHOR="you",
             )
     path = Path(str(path)).expanduser().absolute()
     with open(path, "w") as configfile:
@@ -43,6 +43,8 @@ def execute(cmd):
         return_code = popen.wait()
 
         if return_code:
+            for stdout_line in iter(popen.stderr.readline, ""):
+                yield stdout_line
             raise CalledProcessError(return_code, cmd)
     for str_line in _exec(cmd):
         print(str_line, end='')
