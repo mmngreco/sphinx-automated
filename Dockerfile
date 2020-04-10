@@ -6,4 +6,4 @@ WORKDIR /root/git
 RUN python -m venv venv
 RUN git clone https://github.com/mmngreco/sphinx-automated
 # https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
-CMD source venv/bin/activate && /bin/bash
+CMD ["source venv/bin/activate", "/bin/bash"]

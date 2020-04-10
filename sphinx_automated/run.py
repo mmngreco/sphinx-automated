@@ -1,6 +1,39 @@
-from pathlib import Path
+import logging
+import configparser
 
-from . import *
+from pathlib import Path
+from . import (
+    customize_conf,
+    generate_html,
+    generate_rst,
+    make_doc_structure,
+    process_templates,
+    remove_doc_structure,
+    update_index,
+    utils,
+)
+
+logging.basicConfig(level=logging.INFO)
+
+
+def read_config_file(path=None):
+    logging.info(f"{path}")
+    config = configparser.ConfigParser()
+
+    try:
+        config.read(Path(path).absolute().expanduser())
+    except:
+        PRJ_DIR = input("Enter project dir: ")
+        SRC_NAME = input("Enter a source folder name: ")
+        PRJ_NAME = input("Enter a project name [%s]: " % SRC_NAME)
+        AUTHOR = input("Enter author name: ")
+        config["project"] = dict(
+            PRJ_DIR=PRJ_DIR,
+            SRC_NAME=SRC_NAME,
+            PRJ_NAME=PRJ_NAME,
+            AUTHOR=AUTHOR,
+        )
+    return config
 
 
 def main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR, clean):
@@ -25,19 +58,29 @@ def main(PRJ_DIR, SRC_NAME, PRJ_NAME, AUTHOR, clean):
     update_index.main(PRJ_DIR)
     generate_html.main(PRJ_DIR, SRC_NAME)
 
+
 if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-c", "--config-file", help="Path to config.ini file.", default="~/.sphinx_automated.conf")
+    parser.add_argument(
+        "-c",
+        "--config-file",
+        help="Path to config.ini file.",
+        default="~/.sphinx_automated.conf",
+    )
     parser.add_argument("--prj-dir")
     parser.add_argument("--src-name")
     parser.add_argument("--prj-name")
     parser.add_argument("--author")
-    parser.add_argument("-f","--create-config-file", help="Create an example config file in the path passed.")
-    parser.add_argument("--clean", help="Remove existing content and create it again from scratch.",
-            default=False)
+    parser.add_argument(
+        "--create-config-file",
+        help="Create an example config file in the path passed.",
+    )
+    parser.add_argument(
+        "--clean", help="Overwrites existing doc content.", default=False
+    )
 
     args = parser.parse_args()
 
@@ -46,10 +89,10 @@ if __name__ == "__main__":
     else:
         try:
             config = utils.read_config(args.config_file)
-            PRJ_DIR = config["DEFAULT"]["prj_dir"]
-            SRC_NAME = config["DEFAULT"]["src_dir"]
-            PRJ_NAME = config["DEFAULT"]["prj_name"]
-            AUTHOR = config["DEFAULT"]["author"]
+            PRJ_DIR = config["DEFAULT"]["PRJ_DIR"]
+            SRC_NAME = config["DEFAULT"]["SRC_DIR"]
+            PRJ_NAME = config["DEFAULT"]["PRJ_NAME"]
+            AUTHOR = config["DEFAULT"]["AUTHOR"]
         except KeyError:
             PRJ_DIR = args.prj_dir
             SRC_NAME = args.src_name
