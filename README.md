@@ -31,7 +31,7 @@ The installation will collect the `Sphinx` dependencies.
 1. Direct install with pip from Github:
 
     ```bash
-    pip install git+git@github.com:mmngreco/sphinx-automated.git
+    pip install git+ssh://git@github.com/mmngreco/sphinx-automated.git
     ```
 
 # Quickstart
